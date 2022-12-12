@@ -3,6 +3,11 @@ import cv2
 def object_region(img):
     arry_img = np.array(img)
     arry_img = arry_img[:,:,:3]
+    arry_sum=arry_img.cumsum()
+    # raw데이터가 깨졌을경우 0,0,0으로 되기때문에 cutoff시킴
+    arry_img[:,:,0][arry_img[:,:,0]==0]=255
+    arry_img[:,:,1][arry_img[:,:,1]==0]=255
+    arry_img[:,:,2][arry_img[:,:,2]==0]=255
     arry_img[:,:,0][arry_img[:,:,0]<85]=1 
     arry_img[:,:,1][arry_img[:,:,1]<85]=1
     arry_img[:,:,2][arry_img[:,:,2]<100]=1
